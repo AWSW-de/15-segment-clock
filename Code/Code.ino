@@ -53,7 +53,7 @@
 // ###########################################################################################################################################
 // # Version number of the code:
 // ###########################################################################################################################################
-const char* CLOCK_VERSION = "V1.0.0";
+const char* CLOCK_VERSION = "V1.0.1";
 
 
 // ###########################################################################################################################################
@@ -88,7 +88,7 @@ int intensity, intensity_day, intensity_night;
 int usenightmode, day_time_start, day_time_stop, statusNightMode;
 int useledtest, useshowip;
 char* selectLang;
-int ipdelay = 2000;
+int ipdelay = 1000;
 
 
 // ###########################################################################################################################################
@@ -153,7 +153,7 @@ void setupWebInterface() {
   ESPUI.label("Version", ControlColor::None, CLOCK_VERSION);
 
   // Time:
-  currentTimeID = ESPUI.label("Time", ControlColor::Dark, "Will be updated every 5 seconds...");
+  currentTimeID = ESPUI.label("Time", ControlColor::Dark, "Will be updated every few seconds...");
 
 
 
@@ -1522,17 +1522,8 @@ void update_display() {
     intensity = intensity_day;
   }
   strip.setBrightness(intensity);
-  if (testTime == 0) {  // Show the current time:
-    show_time(iHour, iMinute);
-    delay(1000);
-  } else {  // TEST THE DISPLAY TIME OUTPUT:
-    for (int i = 0; i < 25; i++) {
-      for (int y = 0; y < 60; y++) {
-        show_time(i, y);
-        delay(1000);
-      }
-    }
-  }
+  show_time(iHour, iMinute);
+  delay(1000);
 }
 
 
@@ -1546,13 +1537,6 @@ void show_time(int hours, int minutes) {
   // Test a special time:
   // iHour = 23;
   // iMinute = 45;
-
-  // Test the complete day time texts:
-  if (testTime == 1) {
-    Serial.print(iHour);
-    Serial.print(":");
-    Serial.println(iMinute);
-  }
 
   // Time:
   numbers(getDigit(iHour, 1), 1);    // Hour left digit
@@ -1692,54 +1676,53 @@ void restartLED(uint32_t color) {
   }
 
   if (langLEDlayout == 1) {         // EN: RESTART
-    setLEDcolor(41, 43, 2, color);  // R
-    setLEDcolor(52, 52, 2, color);
-    setLEDcolor(54, 54, 2, color);
-    setLEDcolor(73, 75, 2, color);
-    setLEDcolor(84, 85, 2, color);
-    setLEDcolor(105, 105, 2, color);
-    setLEDcolor(107, 107, 2, color);
+    setLEDcolor(45, 48, 1, color);  // R
+    setLEDcolor(50, 50, 1, color);
+    setLEDcolor(77, 80, 1, color);
+    setLEDcolor(81, 81, 1, color);
+    setLEDcolor(109, 109, 1, color);
+    setLEDcolor(111, 111, 1, color);
 
-    setLEDcolor(36, 38, 3, color);  // E
+    setLEDcolor(41, 43, 2, color);  // E
+    setLEDcolor(52, 52, 2, color);
+    setLEDcolor(74, 75, 2, color);
+    setLEDcolor(84, 84, 2, color);
+    setLEDcolor(105, 107, 2, color);
+
+    setLEDcolor(36, 38, 3, color);  // S
     setLEDcolor(57, 57, 3, color);
     setLEDcolor(68, 70, 3, color);
-    setLEDcolor(89, 89, 3, color);
+    setLEDcolor(91, 91, 3, color);
     setLEDcolor(100, 102, 3, color);
 
-    setLEDcolor(32, 34, 4, color);  // S
-    setLEDcolor(61, 61, 4, color);
-    setLEDcolor(64, 66, 4, color);
-    setLEDcolor(95, 95, 4, color);
-    setLEDcolor(96, 98, 4, color);
+    setLEDcolor(32, 34, 4, color);  // T
+    setLEDcolor(62, 62, 4, color);
+    setLEDcolor(65, 65, 4, color);
+    setLEDcolor(94, 94, 4, color);
+    setLEDcolor(97, 97, 4, color);
 
-    setLEDcolor(144, 146, 5, color);  // T
-    setLEDcolor(174, 174, 5, color);
-    setLEDcolor(177, 177, 5, color);
-    setLEDcolor(206, 206, 5, color);
-    setLEDcolor(209, 209, 5, color);
+    setLEDcolor(144, 146, 5, color);  // A
+    setLEDcolor(175, 175, 5, color);
+    setLEDcolor(173, 173, 5, color);
+    setLEDcolor(176, 178, 5, color);
+    setLEDcolor(205, 205, 5, color);
+    setLEDcolor(207, 207, 5, color);
+    setLEDcolor(208, 208, 5, color);
+    setLEDcolor(210, 210, 5, color);
 
-    setLEDcolor(148, 150, 6, color);  // A
+    setLEDcolor(148, 150, 6, color);  // R
     setLEDcolor(169, 169, 6, color);
     setLEDcolor(171, 171, 6, color);
     setLEDcolor(180, 182, 6, color);
-    setLEDcolor(201, 201, 6, color);
-    setLEDcolor(203, 203, 6, color);
+    setLEDcolor(202, 203, 6, color);
     setLEDcolor(212, 212, 6, color);
     setLEDcolor(214, 214, 6, color);
 
-    setLEDcolor(153, 155, 7, color);  // R
-    setLEDcolor(164, 164, 7, color);
-    setLEDcolor(166, 166, 7, color);
-    setLEDcolor(185, 187, 7, color);
-    setLEDcolor(197, 198, 7, color);
-    setLEDcolor(217, 217, 7, color);
-    setLEDcolor(219, 219, 7, color);
-
-    setLEDcolor(157, 159, 8, color);  // T
-    setLEDcolor(161, 161, 8, color);
-    setLEDcolor(190, 190, 8, color);
-    setLEDcolor(193, 193, 8, color);
-    setLEDcolor(222, 222, 8, color);
+    setLEDcolor(153, 155, 7, color);  // T
+    setLEDcolor(165, 165, 7, color);
+    setLEDcolor(186, 186, 7, color);
+    setLEDcolor(197, 197, 7, color);
+    setLEDcolor(218, 218, 7, color);
   }
   strip.show();
 }

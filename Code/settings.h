@@ -6,7 +6,7 @@
 // #
 // # Released under license: GNU General Public License v3.0: https://github.com/AWSW-de/15-segment-clock/blob/main/LICENSE
 // #
-// # Compatible with clock version: V1.0.0
+// # Compatible with clock version: V1.0.1
 // #
 // ###########################################################################################################################################
 /*
@@ -34,7 +34,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMPIXELS, LEDPIN, NEO_GRB + NEO_KHZ
 // ###########################################################################################################################################
 // # LED language layout default: !!! SET YOUR DEFAULT LANGUAGE HERE !!!
 // ###########################################################################################################################################
-int langLEDlayout_default = 0;  // LED language layout default (0 = DE; 1 = EN)
+int langLEDlayout_default = 1;  // LED language layout default (0 = DE; 1 = EN)
 // NOTE: You may need to use the "Reset clock settings"-button to update the value on the device
 
 
@@ -74,12 +74,6 @@ const char* hostname = "15-SegClock";  // Hostname to be set in your router
 // ###########################################################################################################################################
 const char* Timezone = "CET-1CEST,M3.5.0,M10.5.0/3";  // You can check a list of timezone string variables here:  https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv
 const char* NTPserver = "pool.ntp.org";               // Time server address. Choose the closest one to you here: https://gist.github.com/mutin-sa/eea1c396b1e610a2da1e5550d94b0453
-
-
-// ###########################################################################################################################################
-// # Test functions:
-// ###########################################################################################################################################
-int testTime = 0;  // LED text output test from 00:00 to 23:29 o'clock. Each minute is 1 second in the test
 
 
 // ###########################################################################################################################################
